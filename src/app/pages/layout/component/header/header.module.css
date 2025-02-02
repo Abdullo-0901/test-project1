@@ -1,0 +1,26 @@
+.header {
+  box-shadow: rgba(17, 168, 80, 0.7) 0px 30px 60px -12px inset,
+    rgb(25, 202, 99) 0px 2px 36px -18px inset;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+.input {
+  width: 200px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid #11a850;
+  font-size: 16px;
+  font-family: sans-serif;
+}

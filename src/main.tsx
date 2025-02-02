@@ -9,6 +9,6 @@ import { queryClient } from "./utils/reactQuery";
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools />
-    <App />
+    <App  />
   </QueryClientProvider>
 );

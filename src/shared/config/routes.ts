@@ -4,7 +4,7 @@ export const rutes: RouteObject[] = [
   {
     path: "/",
     async lazy() {
-      const { Layout } = await import("../../app/pages/layout/layout");
+      const { Layout } = await import("../../app/pages/layout/layout.component");
       return { Component: Layout };
     },
   },
