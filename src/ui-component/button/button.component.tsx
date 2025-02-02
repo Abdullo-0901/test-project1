@@ -10,6 +10,7 @@ export function ButtonComponent(args: ButtonProps) {
       variant={args.variant}
       loadingIndicator={args.loadingIndicatorTitle}
       onClick={args.onClick}
+      color={args.color}
     >
       {args.title}
     </Button>

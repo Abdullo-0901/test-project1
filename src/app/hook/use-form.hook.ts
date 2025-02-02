@@ -22,9 +22,7 @@ export function useForm<T extends FormValues>({
   ) => {
     const { name, value } = event.target;
 
-    console.log("====================================");
-    console.log("NAME", name, value);
-    console.log("====================================");
+
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 

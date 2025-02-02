@@ -6,7 +6,7 @@ export default function SkeletonComponent() {
     <Stack spacing={1}>
       <Skeleton
         variant="rectangular"
-        width={210}
+        width={"100%"}
         height={150}
         sx={{ borderRadius: 3 }}
       />
@@ -17,7 +17,7 @@ export default function SkeletonComponent() {
           sx={{ fontSize: "1rem", width: 60, borderRadius: 1 }}
         />
       </Stack>
-      
+
       <Stack spacing={1} direction="row" justifyContent="space-between">
         <Skeleton variant="text" sx={{ fontSize: "1rem", width: 100 }} />
         <Skeleton variant="text" sx={{ fontSize: "1rem", width: 60 }} />

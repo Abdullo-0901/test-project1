@@ -1,27 +1,45 @@
-import { useEffect, useState } from "react";
-import { Header } from "./component/header/header.component";
-import { Sidebar } from "./component/sidebar/sidebar.component";
-import { Products } from "./component/products/products.component";
-import { Container } from "@mui/material";
 import styles from "./layout.module.css";
+import { Container } from "@mui/material";
+import { useMemo, useState } from "react";
+import { Header } from "./component/header/header.component";
+import { useGetProduct } from "../../hook/use-get-product.hook";
+import { Products } from "./component/products/products.component";
+
 export function Layout() {
-  useEffect(() => {
-    get();
-  }, []);
-
-  async function get() {
-    const response = await fetch(import.meta.env.VITE_BASE_ULR);
-    console.log(response.json());
-  }
-
+  // ---------------------------------------------------------------------------
+  // variables
+  // ---------------------------------------------------------------------------
   const [query, setQuery] = useState("");
 
+  // ---------------------------------------------------------------------------
+  // hooks
+  // ---------------------------------------------------------------------------
+
+  const { data: product, isLoading } = useGetProduct({
+    limit: 190,
+    offset: 20,
+  });
+
+  // ---------------------------------------------------------------------------
+  // memos
+  // ---------------------------------------------------------------------------
+
+  const productsFilter = useMemo(() => {
+    if (query) {
+      return product.filter((product) => {
+        return product.title.toLowerCase().includes(query.toLowerCase());
+      });
+    } else {
+      return product;
+    }
+  }, [product, query]);
+
+  // ---------------------------------------------------------------------------
   return (
     <>
       <Header query={query} setQuery={setQuery} />
       <Container className={styles.main}>
-        <Sidebar />
-        <Products />
+        <Products isLoading={isLoading} product={productsFilter} />
       </Container>
     </>
   );

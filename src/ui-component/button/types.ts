@@ -4,6 +4,14 @@ export type ButtonProps = {
   disabled?: boolean;
   title: string;
   variant?: "text" | "outlined" | "contained";
+  color:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning";
   loadingIndicatorTitle?: string;
   onClick: () => void;
 };
