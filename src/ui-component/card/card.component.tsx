@@ -13,7 +13,7 @@ export function CardProduct(product: GetProducts) {
         {/*CARD IMAGE CONTAINER */}
         {/* --------------------------------------------------------------------------- */}
 
-        <Box sx={{ height: 150, width: "100%", backgroundColor: "red" }}>
+        <Box sx={{ height: 150, width: "100%" }}>
           <img
             loading="lazy"
             src={product.images[0]}
@@ -22,6 +22,7 @@ export function CardProduct(product: GetProducts) {
               height: "100%",
               aspectRatio: 1 / 1,
             }}
+            alt={product.title}
           />
         </Box>
 

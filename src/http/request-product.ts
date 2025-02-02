@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { GetProducts, PostProduct, PutProduct } from "../types/globalTypes";
+import { toast } from "react-toastify";
 
 export async function deleteProduct({ id }: { id: number }) {
   try {
@@ -23,9 +24,17 @@ export async function getProducts(args: {
       }`
     );
     return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
+  } catch (error_) {
+    const error = error_ as AxiosError<{ message: string }>;
+    const statusCode = error.status;
+    if (statusCode !== undefined) {
+      if (statusCode >= 500) {
+        toast.error("Ошибка на стороне сервера");
+      }
+    } else if (error.message === "Network Error") {
+      toast.error("Проверьте подключение к интернету.");
+    }
+    return [];
   }
 }
 

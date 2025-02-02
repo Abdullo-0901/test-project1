@@ -39,7 +39,7 @@ export function Layout() {
     <>
       <Header query={query} setQuery={setQuery} />
       <Container className={styles.main}>
-        <Products isLoading={isLoading} product={productsFilter} />
+        <Products isLoading={isLoading} products={productsFilter} />
       </Container>
     </>
   );
