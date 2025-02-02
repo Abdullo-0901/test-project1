@@ -19,13 +19,13 @@ export function Layout() {
     limit: 190,
     offset: 20,
   });
-
+  console.log("isLoading", isLoading);
   // ---------------------------------------------------------------------------
   // memos
   // ---------------------------------------------------------------------------
 
   const productsFilter = useMemo(() => {
-    if (query) {
+    if (query && product) {
       return product.filter((product) => {
         return product.title.toLowerCase().includes(query.toLowerCase());
       });

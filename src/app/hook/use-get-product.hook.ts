@@ -5,6 +5,5 @@ export function useGetProduct(args: { limit: number; offset: number }) {
   return useQuery({
     queryKey: ["products", { limit: args.limit, offset: args.offset }],
     queryFn: () => getProducts({ limit: args.limit, offset: args.offset }),
-    initialData: [],
   });
 }
