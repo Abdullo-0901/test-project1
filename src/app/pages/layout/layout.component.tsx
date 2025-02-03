@@ -1,5 +1,5 @@
 import styles from "./layout.module.css";
-import { Container } from "@mui/material";
+import { Container, SelectChangeEvent } from "@mui/material";
 import { useMemo, useState } from "react";
 import { Header } from "./component/header/header.component";
 import { useGetProducts } from "../../hook/use-get-product.hook";
@@ -10,6 +10,7 @@ export function Layout() {
   // variables
   // ---------------------------------------------------------------------------
   const [query, setQuery] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
 
   // ---------------------------------------------------------------------------
   // hooks
@@ -19,27 +20,43 @@ export function Layout() {
     limit: 190,
     offset: 20,
   });
-  console.log("isLoading", isLoading);
+
+  const handleChange = (event: SelectChangeEvent<typeof categories>) => {
+    const {
+      target: { value },
+    } = event;
+    setCategories(typeof value === "string" ? value.split(",") : value);
+  };
+
   // ---------------------------------------------------------------------------
   // memos
   // ---------------------------------------------------------------------------
 
   const productsFilter = useMemo(() => {
-    if (query && product) {
-      return product.filter((product) => {
-        return product.title.toLowerCase().includes(query.toLowerCase());
-      });
-    } else {
-      return product;
-    }
-  }, [product, query]);
+    if (!product) return [];
+  
+    return product.filter((product) => {
+      const matchesQuery = query ? product.title.toLowerCase().includes(query.toLowerCase()) : true;
+      const matchesCategory = categories.length
+        ? categories.some((category) => category === product.category.name)
+        : true;
+  
+      return matchesQuery && matchesCategory;
+    });
+  }, [product, query, categories]);
+  
 
   // ---------------------------------------------------------------------------
   return (
     <>
       <Header query={query} setQuery={setQuery} />
       <Container className={styles.main}>
-        <Products isLoading={isLoading} products={productsFilter} />
+        <Products
+          isLoading={isLoading}
+          products={productsFilter}
+          categories={categories}
+          handleChangeCategoy={handleChange}
+        />
       </Container>
     </>
   );

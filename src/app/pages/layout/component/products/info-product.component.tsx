@@ -22,10 +22,17 @@ export function InfoProduct(args: {
         <Grid
           container
           spacing={4}
-          height={450}
+          height={"auto"}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         >
-          <Grid size={6}>
+          <Grid
+            size={{
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+            }}
+          >
             <img
               src={data.images[0]}
               style={{
@@ -35,7 +42,14 @@ export function InfoProduct(args: {
             />
           </Grid>
 
-          <Grid size={6}>
+          <Grid
+            size={{
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+            }}
+          >
             <Box
               sx={{
                 display: "flex",

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { createProduct, deleteProduct } from "../../http/request-product";
 import { toast } from "react-toastify";
+import { createProduct } from "../../http/request-product";
 import { PostProduct } from "../../types/globalTypes";
 
 export function usePostProduct() {
@@ -11,8 +11,8 @@ export function usePostProduct() {
     onError: (error: any) => {
       toast.error(error);
     },
-    onSuccess: (data: any) => {
-      toast.success("succes delete");
+    onSuccess: () => {
+      toast.success("Succes add product");
     },
   });
 }

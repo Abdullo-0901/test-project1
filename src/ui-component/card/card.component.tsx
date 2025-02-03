@@ -5,6 +5,8 @@ import { ButtonComponent } from "../button/button.component";
 import { CardProps } from "./card-type";
 
 export function CardProduct(args: CardProps) {
+
+
   // ----------------------------------------------------------------------------------
   return (
     <Card sx={{ minWidth: 175 }}>
@@ -92,13 +94,13 @@ export function CardProduct(args: CardProps) {
           <ButtonComponent
             onClick={() => {
               args.setOpen(true);
-              args.setModalType("edit");
+              args.setModalType("delete");
               args.setProductId(args.product.id);
             }}
-            title="Edit"
+            title="Delete"
             variant="contained"
             size={"small"}
-            color="warning"
+            color="error"
           />
           <ButtonComponent
             onClick={() => {

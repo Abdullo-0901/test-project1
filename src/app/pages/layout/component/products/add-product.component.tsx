@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { ButtonComponent } from "../../../../../ui-component";
 import { useForm } from "../../../../hook";
 import { useGetCategories } from "../../../../hook/use-get-categories.hook";
@@ -19,7 +19,11 @@ type Product = {
   categoryId: string;
 };
 
-export function AddProduct() {
+export function AddProduct({
+  setOpen,
+}: {
+  setOpen: React.Dispatch<SetStateAction<boolean>>;
+}) {
   // ---------------------------------------------------------------------------
   // varables
   // ---------------------------------------------------------------------------
@@ -56,8 +60,6 @@ export function AddProduct() {
   };
 
   async function onSend() {
-    console.log("VALUES", values);
-
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -76,6 +78,7 @@ export function AddProduct() {
         categoryId: Number(values.categoryId),
         images: [data.location],
       });
+      setOpen(false);
     }
   }
 
@@ -272,10 +275,7 @@ export function AddProduct() {
         }}
       >
         <ButtonComponent
-          onClick={() => {
-            onSend();
-            // args.setOpen(false);
-          }}
+          onClick={onSend}
           title="Add"
           variant="contained"
           size={"small"}
@@ -284,7 +284,7 @@ export function AddProduct() {
 
         <ButtonComponent
           onClick={() => {
-            // args.setOpen(false);
+            setOpen(false);
           }}
           title="Cancel"
           variant="contained"
