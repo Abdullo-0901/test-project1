@@ -18,7 +18,7 @@ export type PostProduct = {
   price: number;
   description: string;
   categoryId: number;
-  images: string;
+  images: string[];
 };
 
 export type PutProduct = {
@@ -27,4 +27,12 @@ export type PutProduct = {
   description: string;
   categoryId: number;
   images: string;
+};
+
+export type GetCategory = {
+  id: number;
+  name: string;
+  image: string;
+  creationAt: string;
+  updatedAt: string;
 };

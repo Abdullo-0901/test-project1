@@ -1,10 +1,10 @@
+import { Box, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { GetProducts } from "../../types/globalTypes";
-import { Box, Typography } from "@mui/material";
 import { ButtonComponent } from "../button/button.component";
+import { CardProps } from "./card-type";
 
-export function CardProduct(product: GetProducts) {
+export function CardProduct(args: CardProps) {
   // ----------------------------------------------------------------------------------
   return (
     <Card sx={{ minWidth: 175 }}>
@@ -16,13 +16,13 @@ export function CardProduct(product: GetProducts) {
         <Box sx={{ height: 150, width: "100%" }}>
           <img
             loading="lazy"
-            src={product.images[0]}
+            src={args.product.images[0]}
             style={{
               width: "100%",
               height: "100%",
               aspectRatio: 1 / 1,
             }}
-            alt={product.title}
+            alt={args.product.title}
           />
         </Box>
 
@@ -31,7 +31,7 @@ export function CardProduct(product: GetProducts) {
         {/* --------------------------------------------------------------------------- */}
 
         <Typography sx={{ color: "text.secondary", mb: 1.5, mt: 2 }}>
-          {product.category.name}
+          {args.product.category.name}
         </Typography>
 
         {/* --------------------------------------------------------------------------- */}
@@ -50,14 +50,14 @@ export function CardProduct(product: GetProducts) {
             variant="body2"
             sx={{ color: "black", fontWeight: 700, fontFamily: "sans-serif" }}
           >
-            {product.title.slice(0, 24)}...
+            {args.product.title.slice(0, 24)}...
           </Typography>
 
           <Typography
             variant="body2"
             sx={{ color: "black", fontWeight: 700, fontFamily: "sans-serif" }}
           >
-            {product.price}$
+            {args.product.price}$
           </Typography>
         </Box>
 
@@ -74,7 +74,7 @@ export function CardProduct(product: GetProducts) {
             mt: 2,
           }}
         >
-          {product.description.slice(0, 80)}...
+          {args.product.description.slice(0, 80)}...
         </Typography>
 
         {/* --------------------------------------------------------------------------- */}
@@ -90,14 +90,22 @@ export function CardProduct(product: GetProducts) {
           }}
         >
           <ButtonComponent
-            onClick={() => {}}
-            title="Delete"
+            onClick={() => {
+              args.setOpen(true);
+              args.setModalType("edit");
+              args.setProductId(args.product.id);
+            }}
+            title="Edit"
             variant="contained"
             size={"small"}
-            color="error"
+            color="warning"
           />
           <ButtonComponent
-            onClick={() => {}}
+            onClick={() => {
+              args.setOpen(true);
+              args.setModalType("info");
+              args.setProductId(args.product.id);
+            }}
             title="Info"
             variant="contained"
             size={"small"}

@@ -2,7 +2,7 @@ import styles from "./layout.module.css";
 import { Container } from "@mui/material";
 import { useMemo, useState } from "react";
 import { Header } from "./component/header/header.component";
-import { useGetProduct } from "../../hook/use-get-product.hook";
+import { useGetProducts } from "../../hook/use-get-product.hook";
 import { Products } from "./component/products/products.component";
 
 export function Layout() {
@@ -15,7 +15,7 @@ export function Layout() {
   // hooks
   // ---------------------------------------------------------------------------
 
-  const { data: product, isLoading } = useGetProduct({
+  const { data: product, isLoading } = useGetProducts({
     limit: 190,
     offset: 20,
   });
